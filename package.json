@@ -1,5 +1,5 @@
 {
-  "name": "any-door",
+  "name": "@zaxlct/anydoor",
   "version": "0.1.0",
   "description": "Node JS Static Web server",
   "main": "src/app.js",
