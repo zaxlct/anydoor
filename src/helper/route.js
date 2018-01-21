@@ -5,7 +5,6 @@ const promisify = require('util').promisify
 
 const stat = promisify(fs.stat)
 const readdir = promisify(fs.readdir)
-const config = require('../config/defaultConfig')
 const mime = require('./mime')
 const compress = require('./compress')
 const range = require('./range')
