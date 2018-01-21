@@ -9,6 +9,7 @@ const config = require('../config/defaultConfig')
 const mime = require('./mime')
 const compress = require('./compress')
 const range = require('./range')
+const isFresh = require('./cache')
 
 const tplpath = path.join(__dirname, '../template/dir.tpl')
 const source = fs.readFileSync(tplpath)
@@ -26,6 +27,12 @@ module.exports = async (req, res, filePath) => {
     // })
     const contentType = mime(filePath)
     res.setHeader('Content-Type', contentType)
+
+    if (isFresh(stats, req, res)) {
+      res.statusCode = 304
+      res.end()
+      return
+    }
 
      let rs
      const {code, start, end} = range(stats.size, req, res)
